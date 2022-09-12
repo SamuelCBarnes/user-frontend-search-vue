@@ -52,16 +52,16 @@
               <tr>
                 <th>ID</th>
                 <th>User Name</th>
-                <!-- <th>Email</th>
+                <th>Email</th>
                 <th>Public Repos</th>
                 <th>Location</th>
                 <th>Created</th>
-                <th>Updated</th> -->
+                <th>Updated</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in items" :key="item.id">
-                <td>{{item.id}}</td>
+              <tr v-for="item in items" v-bind:key="item.id">
+                <td>{{ item.id }}</td>
                 <td>{{ item.login }}</td>
                 <td>{{ item.email }}</td>
                 <td>{{ item.public_repos }}</td>
@@ -73,7 +73,8 @@
           </table>
         </div>
       </div>
-      <div>{{items}}</div>
+      <div>Total Results: {{items.total_count}}</div>
+      <div>{{ items }}</div>
       <!--End of items TABLE -->
     </div>
   </div>
@@ -88,30 +89,15 @@ export default {
     return {
       msg: "User FrontEnd Search",
       query: "",
-      items: ''
+      items: "",
     };
   },
   methods: {
-    // queryGithub(q) {
-    //   let self = this;
-    //   //JavaScript fetch for the api info
-    //   // Queries all users
-    //   fetch("https://api.github.com/search/users?q=" + q + "in:name type:user")
-    //     // Searches by username
-    //     // fetch("https://api.github.com/users/" + q)
-    //     .then((j) => {
-    //       return j.json();
-    //     })
-    //     .then((r) => {
-    //       console.log(r);
-    //       self.items = r;
-    //     });
-    // },
-        queryGithub(q) {
+    queryGithub(q) {
       fetch("https://api.github.com/search/users?q=" + q + "in:name type:user")
-        .then(response => response.json())
-        .then(data => (this.items = data));
-    }
+        .then((response) => response.json())
+        .then((data) => (this.items = data));
+    },
   },
 };
 </script>
