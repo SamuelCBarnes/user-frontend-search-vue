@@ -1,17 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <UserSearch msg="User Frontend Search" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import UserSearch from "./components/UserSearch.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    UserSearch,
+  },
+};
 </script>
 
 <style>
