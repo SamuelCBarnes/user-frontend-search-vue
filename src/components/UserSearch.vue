@@ -23,27 +23,6 @@
         </div>
       </form>
       <!--End of searchbar-->
-      <!--Start of items-->
-      <!-- <div class="items" v-if="items">
-        <img v-bind:src="items.avatar_url" />
-        <h2>Name: {{ items.name }}</h2>
-        <div>User Name: {{ items.login }}</div>
-        <div>Email: {{ items.email || "Null" }}</div>
-        <div>Public Repos: {{ items.public_repos }}</div>
-        <div>Location: {{ items.location }}</div>
-        <div>Created at: {{ items.created_at }}</div>
-        <div>Updated at:{{ items.updated_at }}</div>
-        <a
-          v-if="items.html_url"
-          v-bind:href="items.html_url"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-primary"
-          id="github-btn"
-          >See Github Page</a
-        >
-      </div> -->
-      <!--End of items-->
       <!--Start of items TABLE-->
       <div class="items" v-if="items">
         <div class="table-container">
@@ -81,15 +60,13 @@
 </template>
 
 <script>
-// import { defineComponent } from "@vue/composition-api";
-
 export default {
   name: "UserSearch",
   data() {
     return {
       msg: "User FrontEnd Search",
-      query: "",
-      items: "",
+      query: '',
+      items: '',
     };
   },
   methods: {
@@ -181,5 +158,5 @@ body {
 .search-bar .input-group + p strong {
   margin-right: 40px;
 }
-/* itemS */
+
 </style>
