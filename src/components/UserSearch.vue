@@ -1,5 +1,5 @@
 <template>
-  <div class="userSearch">
+  <div>
     <div>
       <!--Start of searchbar-->
       <form
@@ -23,38 +23,40 @@
         </div>
       </form>
       <!--End of searchbar-->
-      <!--Start of items TABLE-->
-      <div class="items" v-if="items">
+      <!--Start of items table-->
+      <div class="results-table" v-if="items">
         <div class="table-container">
           <table class="table is-bordered is-striped is-hoverable is-fullwidth">
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Avatar</th>
                 <th>User Name</th>
-                <th>Email</th>
+                <!-- <th>Email</th>
                 <th>Public Repos</th>
                 <th>Location</th>
                 <th>Created</th>
-                <th>Updated</th>
+                <th>Updated</th> -->
+                <th>Link</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="item in items" v-bind:key="item.id">
                 <td>{{ item.id }}</td>
+                <td><img v-bind:src="item.avatar_url" /></td>
                 <td>{{ item.login }}</td>
-                <td>{{ item.email }}</td>
+                <!-- <td>{{ item.email }}</td>
                 <td>{{ item.public_repos }}</td>
                 <td>{{ item.location }}</td>
                 <td>{{ item.created_at }}</td>
-                <td>{{ item.updated_at }}</td>
+                <td>{{ item.updated_at }}</td> -->
+                <td><a v-bind:href="item.html_url" target="_blank" rel="noopener" class="btn btn-primary">Github Page</a></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <div>Total Results: {{items.total_count}}</div>
-      <div>{{ items }}</div>
-      <!--End of items TABLE -->
+      <!--End of items table -->
     </div>
   </div>
 </template>
@@ -69,22 +71,31 @@ export default {
       items: '',
     };
   },
+  
   methods: {
     queryGithub(q) {
-      fetch("https://api.github.com/search/users?q=" + q + "in:name type:user")
+      fetch("https://api.github.com/search/users?q=" + q + "in:nameORin:email type:user&per_page=15")
         .then((response) => response.json())
-        .then((data) => (this.items = data));
+        .then((data) => (this.items = data.items));
+
     },
   },
 };
 </script>
 
 <style>
-/* BODY GRADIENT */
-body {
-  background-image: linear-gradient(to right top, #d91b23, #124feb);
-  height: 110vh;
+:root {
+    --container-color: rgb(30, 42,71);
+    --stats-bg: rgb(20, 29,47);
+    --text-color: rgb(255, 255, 255);
+    --accent-text-color: rgb(0, 121, 255);
+    --btn-color: rgb(0, 121, 255);
 }
+
+body, html {
+  height: 100%;
+}
+
 /* SEARCH BAR*/
 .search-bar {
   margin: 0;
@@ -158,5 +169,24 @@ body {
 .search-bar .input-group + p strong {
   margin-right: 40px;
 }
+
+.table > thead > tr > th {
+  color: #fff;
+  padding-bottom: 10px;
+  background-color: ##000;
+}
+
+tbody > tr > td {
+color: #fff;
+}
+
+ tbody > tr > td > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50px;
+  max-height: 50px;
+ }
+
 
 </style>

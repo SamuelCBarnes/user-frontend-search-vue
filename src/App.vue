@@ -1,5 +1,5 @@
 <template>
-  <UserSearch msg="User Frontend Search" />
+  <UserSearch />
 </template>
 
 <script>
@@ -15,11 +15,10 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-family: "Space Mono", monospace;
+    background-color: rgb(20, 29,47);
+    padding: 5rem 10rem;
+    display: inline-flexbox;
+    height: 200%;
 }
 </style>
